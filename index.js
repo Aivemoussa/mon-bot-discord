@@ -1,0 +1,36 @@
+const { Client, GatewayIntentBits } = require('discord.js');
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent
+  ]
+});
+
+const TOKEN = process.env.TOKEN;
+const SALON_ID = '1367896135506726982'; // ID du salon où réagir
+
+// 👇 Mets les IDs réels ici
+const EMOJIS = [
+    '<:tank_icone:1367949630142156800>',  
+    '<:heal_icone:1367949627718107196>',
+    '<:dps_icone:1367949622181625988>'
+  ];
+  
+  client.on('ready', () => {
+    console.log(`Connecté en tant que ${client.user.tag}`);
+  });
+  
+  client.on('messageCreate', async (message) => {
+    if (message.channel.id === SALON_ID && !message.author.bot) {
+      try {
+        for (const emoji of EMOJIS) {
+          await message.react(emoji);
+        }
+      } catch (err) {
+        console.error('Erreur lors de l’ajout des réactions :', err);
+      }
+    }
+  });
+  
+  client.login(TOKEN);
