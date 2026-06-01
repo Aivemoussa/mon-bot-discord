@@ -22,7 +22,7 @@ const SALON_ID = '1367896135506726982'; // ID du salon où réagir
 const EMOJIS = [
     '<:tank_icone:1367949630142156800>',  
     '<:heal_icone:1367949627718107196>',
-    '<:dps_icone:1367949622181625988>'
+    '<:dps_icone:1510907481621004338>'
   ];
   
   client.on('ready', () => {
